@@ -1,0 +1,10 @@
+name: ShinraTensei
+main: com.mcdawn.shinratensei.ShinraTensei
+version: 1.0.0
+authors: [jonnyli1125]
+website: http://mcdawn.com/
+
+commands:
+  shinratensei:
+    description: Activates/deactivates shinra tensei mode.
+    usage: /shinratensei [int:radius] [bool:destroy]
