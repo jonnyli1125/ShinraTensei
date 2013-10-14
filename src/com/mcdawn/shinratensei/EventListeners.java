@@ -27,7 +27,7 @@ public class EventListeners implements Listener {
 							if (Math.round(getDistance(temp, loc)) <= radius)
 								new Location(p.getWorld(), x, y, z).getBlock().setType(Material.AIR);
 						}
-			double velocity = 4.5, // constant value because there's no frickin documentation on setVelocity; knockback expected to be about 13 blocks.
+			double velocity = Math.sqrt(radius) * 1.5, // not accurate, just something to make the velocity scale with the radius
 					verticalModifier = 1d / 1.33; // just an approx value because setVelocity on y coord seems to be much more "stronger"
 			for (Entity e : p.getWorld().getEntities()) {
 				Location temp = e.getLocation();

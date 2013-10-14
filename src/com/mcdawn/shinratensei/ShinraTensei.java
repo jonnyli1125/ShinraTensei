@@ -19,7 +19,7 @@ public final class ShinraTensei extends JavaPlugin {
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("shinratensei")) {
-			if (sender instanceof ConsoleCommandSender) return false;
+			if (sender instanceof ConsoleCommandSender || !sender.hasPermission("shinratensei.basic")) return false;
 			Player p = (Player)sender;
 			if (!shinraTenseiSettings.containsKey(p)) {
 				int defaultRadius = 10, radius = defaultRadius;
@@ -27,7 +27,12 @@ public final class ShinraTensei extends JavaPlugin {
 				catch (Exception ex) { return false; }
 				if (radius <= 0) return false;
 				boolean defaultDestroy = false, destroy = defaultDestroy;
-				try { destroy = args.length > 1 ? Boolean.parseBoolean(args[1]) : defaultDestroy; }
+				try {
+					if (args.length > 1) {
+						if (!sender.hasPermission("shinratensei.destroy")) return false;
+						destroy = Boolean.parseBoolean(args[1]);
+					} else destroy = defaultDestroy;
+				}
 				catch (Exception ex) { return false; }
 				shinraTenseiSettings.put(p, new String[] { Integer.toString(radius), Boolean.toString(destroy) });
 				sender.sendMessage("Shinra Tensei mode activated. Press shift and click to use, use command again to deactivate.");

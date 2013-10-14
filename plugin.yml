@@ -8,3 +8,16 @@ commands:
   shinratensei:
     description: Activates/deactivates shinra tensei mode.
     usage: /shinratensei [int:radius] [bool:destroy]
+
+permissions:
+  shinratensei.*:
+    description: Gives access to all shinra tensei modes/commands.
+    children:
+      shinratensei.basic: true
+      shinratensei.destroy: true
+  shinratensei.basic:
+    description: Allows you the basic abilities of shinra tensei, to knock back entities.
+    default: true
+  shinratensei.destroy:
+    description: Allows you to destroy blocks with shinra tensei.
+    default: op
